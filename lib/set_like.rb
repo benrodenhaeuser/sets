@@ -63,7 +63,7 @@ module SetLike
     duplicate
   end
 
-  # set operators
+  # operations on sets
 
   def do_with(other)
     unless other.instance_of?(self.class)
