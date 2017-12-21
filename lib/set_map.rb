@@ -59,6 +59,7 @@ class SetMap
     old_score = self[key]
     @hash[key] = [self[key] + val, self.class.max_score].min
     @size = (@size + (self[key] - old_score)).round(1)
+    self
   end
 
   def remove(key, val = 1)
@@ -66,6 +67,7 @@ class SetMap
     old_score = self[key]
     @hash[key] = [self[key] - val, self.class.min_score].max
     @size = (@size - (old_score - self[key])).round(2)
+    self
   end
 
   def each_pair
