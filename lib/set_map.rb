@@ -58,7 +58,7 @@ class SetMap
     raise(SetError, 'Invalid value') unless self.class.valid_score?(val)
     old_score = self[key]
     @hash[key] = [self[key] + val, self.class.max_score].min
-    @size = (@size + (self[key] - old_score)).round(1)
+    @size = (@size + (self[key] - old_score)).round(2)
     self
   end
 
