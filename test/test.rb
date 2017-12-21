@@ -686,4 +686,20 @@ class FuzzySetTest < Minitest::Test
     set.remove(2, 0.4)
     assert(set.empty?)
   end
+
+  def test_subtract_membership_degree
+    set = FuzzySet.from_hash('a' => 0.5)
+    set.remove('a', 0.01)
+    actual = set['a']
+    expected = 0.49
+    assert_equal(expected, actual)
+  end
+
+  def test_round
+    set = FuzzySet.from_hash('a' => 0.5, 'b' => 0.5)
+    set.remove('b', 0.01)
+    actual = set.size
+    expected = 0.99
+    assert_equal(expected, actual)
+  end
 end
