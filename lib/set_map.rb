@@ -46,7 +46,7 @@ class SetMap
   end
 
   def size
-    @size
+    @size.round(10)
   end
 
   def retrieve(key)
@@ -58,7 +58,7 @@ class SetMap
     raise(SetError, 'Invalid value') unless self.class.valid_score?(val)
     old_score = self[key]
     @hash[key] = [self[key] + val, self.class.max_score].min
-    @size = (@size + (self[key] - old_score)).round(2)
+    @size = @size + (self[key] - old_score)
     self
   end
 
@@ -66,7 +66,7 @@ class SetMap
     raise(SetError, 'Invalid value') unless self.class.valid_score?(val)
     old_score = self[key]
     @hash[key] = [self[key] - val, self.class.min_score].max
-    @size = (@size - (old_score - self[key])).round(2)
+    @size = @size - (old_score - self[key])
     self
   end
 
